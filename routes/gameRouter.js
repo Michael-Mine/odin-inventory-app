@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const gameRouter = Router();
-const controller = require("../controllers/controller");
+const controller = require("../controllers/indexController");
 
 //read game
 gameRouter.get("/games/:gameId");

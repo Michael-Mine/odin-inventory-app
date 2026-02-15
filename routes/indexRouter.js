@@ -1,12 +1,12 @@
 const { Router } = require("express");
 const indexRouter = Router();
-const controller = require("../controllers/controller");
+const indexController = require("../controllers/indexController");
 
 // read all systems
-indexRouter.get("/");
+indexRouter.get("/", indexController.getSystems);
 
-// create new system form (must not be a number)
-indexRouter.get("/new-system");
-indexRouter.post("/new-system");
+// create new system form
+indexRouter.get("/new-system", indexController.newSystemGet);
+indexRouter.post("/new-system", indexController.newSystemPost);
 
 module.exports = indexRouter;
