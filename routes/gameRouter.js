@@ -1,12 +1,13 @@
 const { Router } = require("express");
 const gameRouter = Router();
-const controller = require("../controllers/indexController");
+const gameController = require("../controllers/indexController");
 
-//read game
-gameRouter.get("/games/:gameId");
+gameRouter.get("/:gameId", gameController.getGame);
 
-// update form, delete game.
-gameRouter.get("/games/:gameId/update");
-gameRouter.post("/games/:gameId/update");
+gameRouter.get(":gameId/update", gameController.updateGameGet);
+gameRouter.post(":gameId/update", gameController.updateGamePost);
+
+gameRouter.get(":gameId/delete", gameController.deleteGameGet);
+gameRouter.post(":gameId/delete", gameController.deleteGamePost);
 
 module.exports = gameRouter;
