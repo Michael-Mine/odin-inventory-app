@@ -10,7 +10,7 @@ const validateMessage = [
     .withMessage(`Name ${lengthErr}`),
 ];
 
-async function getSystems(req, res) {
+async function getAllSystems(req, res) {
   const systems = await db.getAllSystems();
   res.render("index", { title: "Mr Mine's Arcade Bar Inventory App", systems });
 }
