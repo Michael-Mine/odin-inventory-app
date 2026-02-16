@@ -24,13 +24,33 @@ const newSystemPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("new-system-form", {
+      return res.status(400).render("create-system-form", {
         title: "Add New System",
         errors: errors.array(),
       });
     }
+    const { name, gamepads } = matchedData(req);
+    await db.insertSystem({ name, gamepads });
+    res.redirect("/");
+  },
+];
+
+async function newDeveloperGet(req, res) {
+  res.render("create-developer-form", { title: "Add New Developer" });
+}
+
+const newDeveloperPost = [
+  validateMessage,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("create-developer-form", {
+        title: "Add New Developer",
+        errors: errors.array(),
+      });
+    }
     const { name } = matchedData(req);
-    await db.insertSystem({ name });
+    await db.insertDeveloper({ name });
     res.redirect("/");
   },
 ];
@@ -39,4 +59,6 @@ module.exports = {
   getAllSystems,
   newSystemGet,
   newSystemPost,
+  newDeveloperGet,
+  newDeveloperPost,
 };
