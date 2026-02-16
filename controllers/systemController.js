@@ -30,7 +30,13 @@ async function getAllSystemGames(req, res) {
 }
 
 async function newGameGet(req, res) {
-  res.render("create-game-form", { title: "Add New Game" });
+  const systemId = req.params.systemId;
+  const developers = db.getDevelopers();
+  res.render("create-game-form", {
+    title: "Add New Game",
+    systemId,
+    developers,
+  });
 }
 
 const newGamePost = [
@@ -43,8 +49,9 @@ const newGamePost = [
         errors: errors.array(),
       });
     }
-    const { title, year, developer } = matchedData(req);
-    await db.insertGame({ title, year, developer });
+    const systemId = req.params.systemId;
+    const { title, year, developerId } = matchedData(req);
+    await db.insertGame({ title, year, systemId, developerId });
     res.redirect("/");
   },
 ];

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include("partials/errors.ejs") %>
+    <form method="POST" action="/<%= systemId %>/new-game">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" />
+      <br />
+      <label for="year">Year made (between 1972 & 2026):</label>
+      <input type="number" name="year" id="year" min="1972" max="2026" />
+      <br />
+      <fieldset>
+        <legend>Please select a developer:</legend>
+        <div>
+          <% developers.forEach((developer) => {
+            <input type="radio" id="<%= developer.name %>" name="developerId" value="<%= developer.id %>" />
+            <label for="<%= developer.name %>"><%= developer.name %></label>
+          <% }); %>
+        </div>
+      </fieldset>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p>If developer is not shown, please add a new developer here:</p>
+    <a href="/new-developer">Add new developer</a>
+  </body>
+</html>
