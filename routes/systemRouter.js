@@ -1,16 +1,19 @@
 const { Router } = require("express");
 const systemRouter = Router();
-const controller = require("../controllers/indexController");
+const systemController = require("../controllers/indexController");
 
 // read system and all games
-systemRouter.get("/system/:systemId");
-
-// update form, delete system.
-systemRouter.get("/system/:systemId/update");
-systemRouter.post("/system/:systemId/update");
+systemRouter.get("/:systemId", systemController.getAllSystemGames);
 
 // create new game form
-systemRouter.get("/system/:systemId/new-game");
-systemRouter.post("/system/:systemId/new-game");
+systemRouter.get("/:systemId/new-game", systemController.newGameGet);
+systemRouter.post("/:systemId/new-game", systemController.newGamePost);
+
+// update form, delete system.
+systemRouter.get("/:systemId/update", systemController.updateSystemGet);
+systemRouter.post("/:systemId/update", systemController.updateSystemPost);
+
+systemRouter.get("/:systemId/delete", systemController.deleteSystemGet);
+systemRouter.post("/:systemId/delete", systemController.deleteSystemPost);
 
 module.exports = systemRouter;

@@ -16,7 +16,7 @@ async function updateGameGet(req, res) {
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
-  res.render("game-update-form", { game: game[0] });
+  res.render("update-game-form", { game: game[0] });
 }
 
 const updateGamePost = [
@@ -43,7 +43,7 @@ async function deleteGameGet(req, res) {
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
-  res.render("game-delete", { game: game[0] });
+  res.render("delete-game", { game: game[0] });
 }
 
 async function deleteGamePost(req, res) {

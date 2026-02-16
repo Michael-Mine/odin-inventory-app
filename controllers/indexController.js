@@ -11,12 +11,12 @@ const validateMessage = [
 ];
 
 async function getSystems(req, res) {
-  const systems = await db.getSystems();
+  const systems = await db.getAllSystems();
   res.render("index", { title: "Mr Mine's Arcade Bar Inventory App", systems });
 }
 
 async function newSystemGet(req, res) {
-  res.render("form-new-system", { title: "Add New System" });
+  res.render("create-system-form", { title: "Add New System" });
 }
 
 const newSystemPost = [
@@ -24,7 +24,7 @@ const newSystemPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("form-new-system", {
+      return res.status(400).render("new-system-form", {
         title: "Add New System",
         errors: errors.array(),
       });
@@ -36,7 +36,7 @@ const newSystemPost = [
 ];
 
 module.exports = {
-  getSystems,
+  getAllSystems,
   newSystemGet,
   newSystemPost,
 };
