@@ -18,16 +18,17 @@ async function getSystem(systemId) {
 
 async function getAllSystemGames(systemId) {
   await pool.query(
-    "SELECT * FROM games WHERE system = ($1) AND retiredOn = 'No'",
+    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE system = ($1) AND retiredOn = 'No'",
     [systemId],
   );
 }
 
 // still access but show as retired?
 async function getGame(gameId) {
-  const { rows } = await pool.query("SELECT * FROM games WHERE id = ($1)", [
-    gameId,
-  ]);
+  const { rows } = await pool.query(
+    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE id = ($1)",
+    [gameId],
+  );
   return rows;
 }
 

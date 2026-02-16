@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= game.name %></title>
+  </head>
+  <body>
+    <h1><%= game.name %></h1>
+    <p>Year: <%= game.year %></p>
+    <p>System: <%= game.system %></p>
+    <p>Developer: <%= game.developer %></p>
+    <% if (game.retiredOn !== 'No') { %>
+      <p>Deleted on: <%= game.retiredOn %></p>
+    <% } %>
+  </body>
+</html>
