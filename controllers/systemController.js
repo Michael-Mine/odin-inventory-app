@@ -13,10 +13,10 @@ const validateMessage = [
     .trim()
     .isInt({ min: 1972, max: 2026 })
     .withMessage(`Age ${yearErr}`),
-  body("new-developer")
+  body("gamepads")
     .trim()
-    .isLength({ min: 1, max: 40 })
-    .withMessage(`Name ${lengthErr}`),
+    .isInt({ min: 0, max: 1 })
+    .withMessage(`Age ${gamepadsErr}`),
 ];
 
 async function getAllSystemGames(req, res) {
@@ -65,13 +65,22 @@ async function updateSystemGet(req, res) {
   res.render("update-system-form", { system });
 }
 
-async function updateSystemPost(req, res) {
-  const systemId = req.params.gameId;
-  const { gamepads } = matchedData(req);
+const updateSystemPost = [
+  validateMessage,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("update-system-form", {
+        errors: errors.array(),
+      });
+    }
+    const systemId = req.params.systemId;
+    const { gamepads } = matchedData(req);
 
-  await db.updateSystem({ gamepads, systemId });
-  res.redirect("/" + systemId);
-}
+    await db.updateSystem({ gamepads, systemId });
+    res.redirect("/");
+  },
+];
 
 async function deleteSystemGet(req, res) {
   const system = await db.getSystem(req.params.systemId);

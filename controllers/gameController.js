@@ -3,7 +3,6 @@ const CustomNotFoundError = require("../errors/CustomNotFoundError");
 
 async function getGame(req, res) {
   const game = await db.getGame(req.params.gameId);
-
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
@@ -12,11 +11,10 @@ async function getGame(req, res) {
 
 async function updateGameGet(req, res) {
   const game = await db.getGame(req.params.gameId);
-  const systems = await db.getAllSystems();
-
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
+  const systems = await db.getAllSystems();
   res.render("update-game-form", { game: game[0], systems });
 }
 
@@ -40,7 +38,6 @@ const updateGamePost = [
 
 async function deleteGameGet(req, res) {
   const game = await db.getGame(req.params.gameId);
-
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }

@@ -1,13 +1,18 @@
 const db = require("../db/queries");
 const { body, validationResult, matchedData } = require("express-validator");
 
-const lengthErr = "must be between 1 and 20 characters.";
+const nameErr = "must be between 1 and 20 characters.";
+const gamepadsErr = "must be between 0 and 50.";
 
 const validateMessage = [
   body("name")
     .trim()
     .isLength({ min: 1, max: 20 })
-    .withMessage(`Name ${lengthErr}`),
+    .withMessage(`Name ${nameErr}`),
+  body("gamepads")
+    .trim()
+    .isInt({ min: 0, max: 1 })
+    .withMessage(`Age ${gamepadsErr}`),
 ];
 
 async function getAllSystems(req, res) {

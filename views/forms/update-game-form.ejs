@@ -8,11 +8,9 @@
   <body>
     <h1>Update <%= game.name %> System</h1>
     <p>Current System: <%= game.system %></p>
-
+    
+    <%- include("partials/errors.ejs") %>
     <form method="POST" action="/<%= game.id %>/update">
-      <label for="name">New System:</label>
-      <input type="radio" name="name" id="name" />
-      <br />
       <fieldset>
         <legend>Please select new system:</legend>
         <div>
@@ -21,10 +19,10 @@
             <label for="<%= system.name %>"><%= system.name %></label>
           <% }); %>
         </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
       </fieldset>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
     </form>
 
     <p>If system is not shown, please add a new system here:</p>
