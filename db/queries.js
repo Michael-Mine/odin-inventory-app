@@ -37,15 +37,15 @@ async function getDevelopers() {
   return rows;
 }
 
+async function insertDeveloper(name) {
+  await pool.query("INSERT INTO developers (name) VALUES ($1)", [name]);
+}
+
 async function insertSystem({ name, gamepads }) {
   await pool.query(
     "INSERT INTO systems (name, gamepads, retiredOn) VALUES ($1, $2, $3)",
     [name, gamepads, "No"],
   );
-}
-
-async function insertDeveloper(name) {
-  await pool.query("INSERT INTO developers (name) VALUES ($1)", [name]);
 }
 
 async function insertGame({ title, year, systemId, developerId }) {
@@ -89,8 +89,8 @@ module.exports = {
   getAllSystemGames,
   getGame,
   getDevelopers,
-  insertSystem,
   insertDeveloper,
+  insertSystem,
   insertGame,
   updateSystem,
   updateGame,

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update <%= system.name %></title>
+  </head>
+  <body>
+    <h1>Update <%= system.name %></h1>
+    <p>Current <%= system.name %> Gamepads: <%= system.gamepads %></p>
+
+    <form method="POST" action="/<%= system.id %>/update">
+      <label for="gamepads">Update gamepads (max 50):</label>
+      <input type="number" name="gamepads" id="gamepads" min="0" max="50" />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

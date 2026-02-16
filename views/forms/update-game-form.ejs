@@ -13,8 +13,6 @@
       <label for="name">New System:</label>
       <input type="radio" name="name" id="name" />
       <br />
-      <button type="submit">Submit</button>
-
       <fieldset>
         <legend>Please select new system:</legend>
         <div>
@@ -23,13 +21,15 @@
             <label for="<%= system.name %>"><%= system.name %></label>
           <% }); %>
         </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
       </fieldset>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
     </form>
 
     <p>If system is not shown, please add a new system here:</p>
     <a href="/new-system">Add new system</a>
+    <br>
+    <a href="/<%= game.id %>/delete">Delete game here/a>
   </body>
 </html>

@@ -67,10 +67,10 @@ async function updateSystemGet(req, res) {
 
 async function updateSystemPost(req, res) {
   const systemId = req.params.gameId;
-  const { gamepad } = matchedData(req);
+  const { gamepads } = matchedData(req);
 
-  await db.updateSystem({ gamepad, systemId });
-  res.redirect("/:systemId");
+  await db.updateSystem({ gamepads, systemId });
+  res.redirect("/" + systemId);
 }
 
 async function deleteSystemGet(req, res) {

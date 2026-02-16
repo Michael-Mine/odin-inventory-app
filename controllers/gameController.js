@@ -34,7 +34,7 @@ const updateGamePost = [
     const { system } = matchedData(req);
 
     await db.updateGame({ system, gameId });
-    res.redirect("/:gameId");
+    res.redirect("/" + gameId);
   },
 ];
 
