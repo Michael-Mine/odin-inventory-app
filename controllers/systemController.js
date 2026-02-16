@@ -20,12 +20,13 @@ const validateMessage = [
 ];
 
 async function getAllSystemGames(req, res) {
+  const systemId = req.params.systemId;
   const games = await db.getAllSystemGames(req.params.systemId);
 
   if (!games) {
     throw new CustomNotFoundError("System has no games");
   }
-  res.render("system-games", { games });
+  res.render("system-games", { games, systemId });
 }
 
 async function newGameGet(req, res) {

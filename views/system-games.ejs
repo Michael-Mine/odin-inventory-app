@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= game[0].system %> Games</title>
+  </head>
+  <body>
+    <h1><%= game[0].system %> Game</h1>
+    <a href="/<%= systemId %>/new-game">Add New Game</a>
+    <ol>
+      <% games.forEach((game) => { %>
+        <li>
+          <p><%= game.name %></p>
+          <p><%= game.year %></p>
+          <p><%= game.system %></p>
+          <p><%= game.developer %></p>
+          <a href="/game/<%= game.id %>">Open to Edit</a>
+        </li>
+        <br>
+      <% }); %>
+    </ol>
+  </body>
+</html>
