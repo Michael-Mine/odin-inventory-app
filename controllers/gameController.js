@@ -12,11 +12,12 @@ async function getGame(req, res) {
 
 async function updateGameGet(req, res) {
   const game = await db.getGame(req.params.gameId);
+  const systems = await db.getAllSystems();
 
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
-  res.render("update-game-form", { game: game[0] });
+  res.render("update-game-form", { game: game[0], systems });
 }
 
 const updateGamePost = [

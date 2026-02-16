@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update <%= game.name %></title>
+  </head>
+  <body>
+    <h1>Update <%= game.name %> System</h1>
+    <p>Current System: <%= game.system %></p>
+
+    <form method="POST" action="/<%= game.id %>/update">
+      <label for="name">New System:</label>
+      <input type="radio" name="name" id="name" />
+      <br />
+      <button type="submit">Submit</button>
+
+      <fieldset>
+        <legend>Please select new system:</legend>
+        <div>
+          <% systems.forEach((system) => {
+            <input type="radio" id="<%= system.name %>" name="system" value="<%= system.id %>" />
+            <label for="<%= system.name %>"><%= system.name %></label>
+          <% }); %>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <p>If system is not shown, please add a new system here:</p>
+    <a href="/new-system">Add new system</a>
+  </body>
+</html>

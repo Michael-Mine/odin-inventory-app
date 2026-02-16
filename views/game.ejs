@@ -13,5 +13,7 @@
     <% if (game.retiredOn !== 'No') { %>
       <p>Deleted on: <%= game.retiredOn %></p>
     <% } %>
+    <a href="/<%= game.id %>/update">Update Game System</a>
+    <a href="/<%= game.id %>/delete">Delete Game</a>
   </body>
 </html>
