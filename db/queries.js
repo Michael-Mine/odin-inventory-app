@@ -18,7 +18,7 @@ async function getSystem(systemId) {
 
 async function getAllSystemGames(systemId) {
   await pool.query(
-    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE system = ($1) AND retiredOn IS NULL",
+    "SELECT games.title, games.year, systems.name AS system, developers.name AS developer FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE system = ($1) AND games.retiredOn IS NULL",
     [systemId],
   );
 }
@@ -26,7 +26,7 @@ async function getAllSystemGames(systemId) {
 // can still access directly if retired, to view details
 async function getGame(gameId) {
   const { rows } = await pool.query(
-    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE id = ($1)",
+    "SELECT games.title, games.year, systems.name AS system, developers.name AS developer, games.retiredOn FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE games.id = ($1)",
     [gameId],
   );
   return rows;
@@ -42,21 +42,21 @@ async function insertDeveloper(name) {
 }
 
 async function insertSystem({ name, gamepads }) {
-  await pool.query(
-    "INSERT INTO systems (name, gamepads, retiredOn) VALUES ($1, $2, $3)",
-    [name, gamepads, "No"],
-  );
+  await pool.query("INSERT INTO systems (name, gamepads) VALUES ($1, $2)", [
+    name,
+    gamepads,
+  ]);
 }
 
 async function insertGame({ title, year, systemId, developerId }) {
   await pool.query(
-    "INSERT INTO games (title, year, system, developer, retiredOn) VALUES ($1, $2, $3, $4, $5)",
-    [title, year, systemId, developerId, "No"],
+    "INSERT INTO games (title, year, system, developer) VALUES ($1, $2, $3, $4)",
+    [title, year, systemId, developerId],
   );
 }
 
 async function updateSystem({ gamepads, systemId }) {
-  await pool.query("UPDATE system SET gamepads = ($1) WHERE id = ($2)", [
+  await pool.query("UPDATE systems SET gamepads = ($1) WHERE id = ($2)", [
     gamepads,
     systemId,
   ]);
@@ -70,7 +70,7 @@ async function updateGame({ systemId, gameId }) {
 }
 
 async function deleteSystem(systemId) {
-  await pool.query("UPDATE system SET retiredOn = ($1) WHERE id = ($2)", [
+  await pool.query("UPDATE systems SET retiredOn = ($1) WHERE id = ($2)", [
     new Date(),
     systemId,
   ]);

@@ -6,11 +6,11 @@
     <title><%= game.name %></title>
   </head>
   <body>
-    <h1><%= game.name %></h1>
+    <h1><%= game.title %></h1>
     <p>Year: <%= game.year %></p>
     <p>System: <%= game.system %></p>
     <p>Developer: <%= game.developer %></p>
-    <% if (game.retiredOn !== 'No') { %>
+    <% if (game.retiredOn !== 'NULL') { %>
       <p>Deleted on: <%= game.retiredOn %></p>
     <% } %>
     <a href="/<%= game.id %>/update">Update Game System</a>
