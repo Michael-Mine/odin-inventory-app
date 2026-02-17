@@ -2,13 +2,13 @@ const pool = require("./pool");
 
 async function getAllSystems() {
   const { rows } = await pool.query(
-    "SELECT * FROM systems WHERE retiredOn = 'No'",
+    "SELECT * FROM systems WHERE retiredOn IS NULL",
   );
   console.log(rows);
   return rows;
 }
 
-//can still access if retired, to view games on retired system
+//can still access directly if retired, to view games on retired system
 async function getSystem(systemId) {
   const { rows } = await pool.query("SELECT * FROM systems WHERE id = ($1)", [
     systemId,
@@ -18,12 +18,12 @@ async function getSystem(systemId) {
 
 async function getAllSystemGames(systemId) {
   await pool.query(
-    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE system = ($1) AND retiredOn = 'No'",
+    "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE system = ($1) AND retiredOn IS NULL",
     [systemId],
   );
 }
 
-// still access but show as retired?
+// can still access directly if retired, to view details
 async function getGame(gameId) {
   const { rows } = await pool.query(
     "SELECT * FROM games INNER JOIN systems ON game.system = system.id INNER JOIN developers ON game.developer = developer.id WHERE id = ($1)",
@@ -62,9 +62,9 @@ async function updateSystem({ gamepads, systemId }) {
   ]);
 }
 
-async function updateGame({ system, gameId }) {
+async function updateGame({ systemId, gameId }) {
   await pool.query("UPDATE games SET system = ($1) WHERE id = ($2)", [
-    system,
+    systemId,
     gameId,
   ]);
 }
@@ -72,7 +72,7 @@ async function updateGame({ system, gameId }) {
 async function deleteSystem(systemId) {
   await pool.query("UPDATE system SET retiredOn = ($1) WHERE id = ($2)", [
     new Date(),
-    gameId,
+    systemId,
   ]);
 }
 

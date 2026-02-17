@@ -8,14 +8,14 @@
   <body>
     <h1>Update <%= game.name %> System</h1>
     <p>Current System: <%= game.system %></p>
-    
+
     <%- include("partials/errors.ejs") %>
     <form method="POST" action="/<%= game.id %>/update">
       <fieldset>
         <legend>Please select new system:</legend>
         <div>
           <% systems.forEach((system) => {
-            <input type="radio" id="<%= system.name %>" name="system" value="<%= system.id %>" />
+            <input type="radio" id="<%= system.name %>" name="systemId" value="<%= system.id %>" />
             <label for="<%= system.name %>"><%= system.name %></label>
           <% }); %>
         </div>

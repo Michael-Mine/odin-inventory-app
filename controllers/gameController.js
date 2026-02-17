@@ -29,9 +29,9 @@ const updateGamePost = [
       });
     }
     const gameId = req.params.gameId;
-    const { system } = matchedData(req);
+    const { systemId } = matchedData(req);
 
-    await db.updateGame({ system, gameId });
+    await db.updateGame({ systemId, gameId });
     res.redirect("/" + gameId);
   },
 ];
