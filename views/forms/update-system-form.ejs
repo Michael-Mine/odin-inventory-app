@@ -9,7 +9,7 @@
     <h1>Update <%= system.name %></h1>
     <p>Current <%= system.name %> Gamepads: <%= system.gamepads %></p>
     
-    <%- include("partials/errors.ejs") %>
+    <%- include("../partials/errors.ejs") %>
     <form method="POST" action="/<%= system.id %>/update">
       <label for="gamepads">Update gamepads (max 50):</label>
       <input type="number" name="gamepads" id="gamepads" min="0" max="50" />

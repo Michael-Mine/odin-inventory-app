@@ -33,7 +33,7 @@ async function getAllSystemGames(req, res) {
 async function newGameGet(req, res) {
   const systemId = req.params.systemId;
   const developers = db.getDevelopers();
-  res.render("create-game-form", {
+  res.render("forms/create-game-form", {
     title: "Add New Game",
     systemId,
     developers,
@@ -45,7 +45,7 @@ const newGamePost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("new-game-form", {
+      return res.status(400).render("forms/new-game-form", {
         title: "Add New Game",
         errors: errors.array(),
       });
@@ -63,7 +63,7 @@ async function updateSystemGet(req, res) {
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
-  res.render("update-system-form", { system });
+  res.render("forms/update-system-form", { system });
 }
 
 const updateSystemPost = [
@@ -71,7 +71,7 @@ const updateSystemPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("update-system-form", {
+      return res.status(400).render("forms/update-system-form", {
         errors: errors.array(),
       });
     }
@@ -89,7 +89,7 @@ async function deleteSystemGet(req, res) {
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
-  res.render("delete-system", { system });
+  res.render("forms/delete-system", { system });
 }
 
 async function deleteSystemPost(req, res) {

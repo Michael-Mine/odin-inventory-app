@@ -21,7 +21,7 @@ async function getAllSystems(req, res) {
 }
 
 async function newSystemGet(req, res) {
-  res.render("create-system-form", { title: "Add New System" });
+  res.render("forms/create-system-form", { title: "Add New System" });
 }
 
 const newSystemPost = [
@@ -29,7 +29,7 @@ const newSystemPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("create-system-form", {
+      return res.status(400).render("forms/create-system-form", {
         title: "Add New System",
         errors: errors.array(),
       });
@@ -41,7 +41,7 @@ const newSystemPost = [
 ];
 
 async function newDeveloperGet(req, res) {
-  res.render("create-developer-form", { title: "Add New Developer" });
+  res.render("forms/create-developer-form", { title: "Add New Developer" });
 }
 
 const newDeveloperPost = [
@@ -49,7 +49,7 @@ const newDeveloperPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("create-developer-form", {
+      return res.status(400).render("forms/create-developer-form", {
         title: "Add New Developer",
         errors: errors.array(),
       });

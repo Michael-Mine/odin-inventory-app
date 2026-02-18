@@ -15,7 +15,7 @@ async function updateGameGet(req, res) {
     throw new CustomNotFoundError("Game not found");
   }
   const systems = await db.getAllSystems();
-  res.render("update-game-form", { game: game[0], systems });
+  res.render("forms/update-game-form", { game: game[0], systems });
 }
 
 async function updateGamePost(req, res) {
@@ -31,7 +31,7 @@ async function deleteGameGet(req, res) {
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
-  res.render("delete-game", { game: game[0] });
+  res.render("forms/delete-game", { game: game[0] });
 }
 
 async function deleteGamePost(req, res) {
