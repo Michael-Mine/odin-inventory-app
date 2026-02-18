@@ -17,10 +17,11 @@ async function getSystem(systemId) {
 }
 
 async function getAllSystemGames(systemId) {
-  await pool.query(
-    "SELECT games.title, games.year, systems.name AS system, developers.name AS developer FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE system = ($1) AND games.retiredOn IS NULL",
+  const { rows } = await pool.query(
+    "SELECT games.id, games.title, games.year, systems.name AS system, developers.name AS developer FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE system = ($1) AND games.retiredOn IS NULL",
     [systemId],
   );
+  return rows;
 }
 
 // can still access directly if retired, to view details

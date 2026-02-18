@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= game[0].system %> Games</title>
+    <title><%= games[0].system %> Games</title>
   </head>
   <body>
-    <h1><%= game[0].system %> Game</h1>
+    <h1><%= games[0].system %> Game</h1>
     <a href="/<%= systemId %>/new-game">Add New Game</a>
     <ol>
       <% games.forEach((game) => { %>
