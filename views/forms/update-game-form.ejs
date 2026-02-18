@@ -9,11 +9,11 @@
     <h1>Update <%= game.name %> System</h1>
     <p>Current System: <%= game.system %></p>
 
-    <form method="POST" action="/<%= game.id %>/update">
+    <form method="POST" action="/game/<%= game.id %>/update">
       <fieldset>
         <legend>Please select new system:</legend>
         <div>
-          <% systems.forEach((system) => {
+          <% systems.forEach((system) => { %>
             <input type="radio" id="<%= system.name %>" name="systemId" value="<%= system.id %>" />
             <label for="<%= system.name %>"><%= system.name %></label>
           <% }); %>
@@ -26,7 +26,5 @@
 
     <p>If system is not shown, please add a new system here:</p>
     <a href="/new-system">Add new system</a>
-    <br>
-    <a href="/<%= game.id %>/delete">Delete game here/a>
   </body>
 </html>

@@ -2,7 +2,8 @@ const db = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
 
 async function getGame(req, res) {
-  const game = await db.getGame(req.params.gameId);
+  const gameId = req.params.gameId;
+  const game = await db.getGame(gameId);
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
@@ -10,7 +11,10 @@ async function getGame(req, res) {
 }
 
 async function updateGameGet(req, res) {
-  const game = await db.getGame(req.params.gameId);
+  console.log("hi");
+  const gameId = req.params.gameId;
+  const game = await db.getGame(gameId);
+  console.log(game);
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
@@ -27,7 +31,8 @@ async function updateGamePost(req, res) {
 }
 
 async function deleteGameGet(req, res) {
-  const game = await db.getGame(req.params.gameId);
+  const gameId = req.params.gameId;
+  const game = await db.getGame(gameId);
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
@@ -35,7 +40,8 @@ async function deleteGameGet(req, res) {
 }
 
 async function deleteGamePost(req, res) {
-  await db.deleteGame(req.params.gameId);
+  const gameId = req.params.gameId;
+  await db.deleteGame(gameId);
   res.redirect("/");
 }
 

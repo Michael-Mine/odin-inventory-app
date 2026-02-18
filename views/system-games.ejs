@@ -6,7 +6,7 @@
     <title><%= games[0].system %> Games</title>
   </head>
   <body>
-    <h1><%= games[0].system %> Game</h1>
+    <h1><%= games[0].system %> Games</h1>
     <a href="/system/<%= systemId %>/new-game">Add New Game</a>
     <ol>
       <% games.forEach((game) => { %>
@@ -20,5 +20,7 @@
         <br>
       <% }); %>
     </ol>
+    <a href="/system/<%= systemId %>/update">Update <%= games[0].system %> System</a>
+    <a href="/system/<%= systemId %>/delete">Delete <%= games[0].system %> System</a>
   </body>
 </html>

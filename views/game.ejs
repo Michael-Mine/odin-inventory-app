@@ -10,10 +10,13 @@
     <p>Year: <%= game.year %></p>
     <p>System: <%= game.system %></p>
     <p>Developer: <%= game.developer %></p>
-    <% if (game.retiredOn !== 'NULL') { %>
-      <p>Deleted on: <%= game.retiredOn %></p>
+
+    <% if(game.retiredon){ %> 
+      <p>Deleted on: <%= game.retiredOn %></p> 
     <% } %>
+    
     <a href="/game/<%= game.id %>/update">Update Game System</a>
+    <br>
     <a href="/game/<%= game.id %>/delete">Delete Game</a>
   </body>
 </html>

@@ -9,7 +9,7 @@
     <h1>Delete <%= game.name %></h1>
     <p>Are you sure you want to delete <%= game.name %>?</p>
 
-    <form method="POST" action="/<%= game.id %>/delete">
+    <form method="POST" action="/game/<%= game.id %>/delete">
       <div>
         <button type="submit">Delete</button>
       </div>
