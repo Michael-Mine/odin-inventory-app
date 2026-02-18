@@ -1,8 +1,10 @@
 const db = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
+const { body, validationResult, matchedData } = require("express-validator");
 
 const lengthErr = "must be between 1 and 40 characters.";
 const yearErr = "must be between 1972 and 2026.";
+const gamepadsErr = "must be between 0 and 50.";
 
 const validateMessage = [
   body("title")
@@ -15,7 +17,7 @@ const validateMessage = [
     .withMessage(`Age ${yearErr}`),
   body("gamepads")
     .trim()
-    .isInt({ min: 0, max: 1 })
+    .isInt({ min: 0, max: 50 })
     .withMessage(`Age ${gamepadsErr}`),
 ];
 

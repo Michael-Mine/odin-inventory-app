@@ -11,7 +11,7 @@ const validateMessage = [
     .withMessage(`Name ${nameErr}`),
   body("gamepads")
     .trim()
-    .isInt({ min: 0, max: 1 })
+    .isInt({ min: 0, max: 50 })
     .withMessage(`Age ${gamepadsErr}`),
 ];
 

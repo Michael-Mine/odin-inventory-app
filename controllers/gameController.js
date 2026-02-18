@@ -18,23 +18,13 @@ async function updateGameGet(req, res) {
   res.render("update-game-form", { game: game[0], systems });
 }
 
-const updateGamePost = [
-  validateMessage,
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).render("game-update-form", {
-        game: game[0],
-        errors: errors.array(),
-      });
-    }
-    const gameId = req.params.gameId;
-    const { systemId } = matchedData(req);
+async function updateGamePost(req, res) {
+  const gameId = req.params.gameId;
+  const { systemId } = matchedData(req);
 
-    await db.updateGame({ systemId, gameId });
-    res.redirect("/" + gameId);
-  },
-];
+  await db.updateGame({ systemId, gameId });
+  res.redirect("/" + gameId);
+}
 
 async function deleteGameGet(req, res) {
   const game = await db.getGame(req.params.gameId);
