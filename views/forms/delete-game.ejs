@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delete <%= game.name %></title>
+    <title>Delete <%= game.title %></title>
   </head>
   <body>
-    <h1>Delete <%= game.name %></h1>
-    <p>Are you sure you want to delete <%= game.name %>?</p>
+    <h1>Delete <%= game.title %></h1>
+    <p>Are you sure you want to delete <%= game.title %>?</p>
 
     <form method="POST" action="/game/<%= game.id %>/delete">
       <div>

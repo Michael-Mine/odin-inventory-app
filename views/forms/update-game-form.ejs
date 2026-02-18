@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update <%= game.name %></title>
+    <title>Update <%= game.title %></title>
   </head>
   <body>
-    <h1>Update <%= game.name %> System</h1>
+    <h1>Update <%= game.title %></h1>
     <p>Current System: <%= game.system %></p>
 
     <form method="POST" action="/game/<%= game.id %>/update">
