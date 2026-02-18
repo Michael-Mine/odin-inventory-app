@@ -32,7 +32,7 @@ async function getAllSystemGames(req, res) {
 
 async function newGameGet(req, res) {
   const systemId = req.params.systemId;
-  const developers = db.getDevelopers();
+  const developers = await db.getDevelopers();
   res.render("forms/create-game-form", {
     title: "Add New Game",
     systemId,

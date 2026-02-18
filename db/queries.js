@@ -27,7 +27,7 @@ async function getAllSystemGames(systemId) {
 // can still access directly if retired, to view details
 async function getGame(gameId) {
   const { rows } = await pool.query(
-    "SELECT games.title, games.year, systems.name AS system, developers.name AS developer, games.retiredOn FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE games.id = ($1)",
+    "SELECT games.id, games.title, games.year, systems.name AS system, developers.name AS developer, games.retiredOn FROM games INNER JOIN systems ON games.system = systems.id INNER JOIN developers ON games.developer = developers.id WHERE games.id = ($1)",
     [gameId],
   );
   return rows;

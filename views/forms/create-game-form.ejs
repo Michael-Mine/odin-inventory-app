@@ -18,7 +18,7 @@
       <fieldset>
         <legend>Please select a developer:</legend>
         <div>
-          <% developers.forEach((developer) => {
+          <% developers.forEach((developer) => { %>
             <input type="radio" id="<%= developer.name %>" name="developerId" value="<%= developer.id %>" />
             <label for="<%= developer.name %>"><%= developer.name %></label>
           <% }); %>
