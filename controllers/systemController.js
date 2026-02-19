@@ -60,11 +60,11 @@ const newGamePost = [
 async function updateSystemGet(req, res) {
   const systemId = req.params.systemId;
   const system = await db.getSystem(systemId);
-
+  console.log(system);
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
-  res.render("forms/update-system-form", { system });
+  res.render("forms/update-system-form", { system: system[0] });
 }
 
 const updateSystemPost = [
@@ -91,7 +91,7 @@ async function deleteSystemGet(req, res) {
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
-  res.render("forms/delete-system", { system });
+  res.render("forms/delete-system", { system: system[0] });
 }
 
 async function deleteSystemPost(req, res) {
