@@ -15,6 +15,7 @@ const validateMessageNewGame = [
     .trim()
     .isInt({ min: 1972, max: 2026 })
     .withMessage(`Year ${yearErr}`),
+  body("developerId").trim(),
 ];
 
 const validateMessageUpdateSystem = [
@@ -47,10 +48,10 @@ async function newGameGet(req, res) {
 const newGamePost = [
   validateMessageNewGame,
   async (req, res) => {
-    const errors = validationResult(req);
     const systemId = req.params.systemId;
-    const system = await db.getSystem(systemId);
     const developers = await db.getDevelopers();
+    const system = await db.getSystem(systemId);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("forms/create-game-form", {
         title: "Add New Game",
@@ -61,7 +62,6 @@ const newGamePost = [
       });
     }
     const { title, year, developerId } = matchedData(req);
-    console.log({ title, year, developerId });
     await db.insertGame({ title, year, systemId, developerId });
     res.redirect("/");
   },
@@ -79,9 +79,9 @@ async function updateSystemGet(req, res) {
 const updateSystemPost = [
   validateMessageUpdateSystem,
   async (req, res) => {
-    const errors = validationResult(req);
     const systemId = req.params.systemId;
     const system = await db.getSystem(systemId);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors);
       return res.status(400).render("forms/update-system-form", {
@@ -89,7 +89,6 @@ const updateSystemPost = [
         errors: errors.array(),
       });
     }
-    console.log("Hi");
     const { gamepads } = matchedData(req);
     await db.updateSystem({ gamepads, systemId });
     res.redirect("/");

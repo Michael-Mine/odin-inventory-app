@@ -1,5 +1,6 @@
 const db = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
+const { matchedData } = require("express-validator");
 
 async function getGame(req, res) {
   const gameId = req.params.gameId;
