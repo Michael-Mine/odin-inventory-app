@@ -4,7 +4,18 @@ const { body, validationResult, matchedData } = require("express-validator");
 const nameErr = "must be between 1 and 20 characters.";
 const gamepadsErr = "must be between 0 and 50.";
 
-const validateMessage = [
+const validateMessageNewSystem = [
+  body("name")
+    .trim()
+    .isLength({ min: 1, max: 20 })
+    .withMessage(`Name ${nameErr}`),
+  body("gamepads")
+    .trim()
+    .isInt({ min: 0, max: 50 })
+    .withMessage(`Age ${gamepadsErr}`),
+];
+
+const validateMessageNewDeveloper = [
   body("name")
     .trim()
     .isLength({ min: 1, max: 20 })
@@ -25,7 +36,7 @@ async function newSystemGet(req, res) {
 }
 
 const newSystemPost = [
-  validateMessage,
+  validateMessageNewSystem,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -45,7 +56,7 @@ async function newDeveloperGet(req, res) {
 }
 
 const newDeveloperPost = [
-  validateMessage,
+  validateMessageNewDeveloper,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

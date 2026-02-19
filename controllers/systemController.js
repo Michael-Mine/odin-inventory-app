@@ -6,7 +6,7 @@ const lengthErr = "must be between 1 and 40 characters.";
 const yearErr = "must be between 1972 and 2026.";
 const gamepadsErr = "must be between 0 and 50.";
 
-const validateMessage = [
+const validateMessageNewGame = [
   body("title")
     .trim()
     .isLength({ min: 1, max: 40 })
@@ -14,20 +14,24 @@ const validateMessage = [
   body("year")
     .trim()
     .isInt({ min: 1972, max: 2026 })
-    .withMessage(`Age ${yearErr}`),
+    .withMessage(`Year ${yearErr}`),
+];
+
+const validateMessageUpdateSystem = [
   body("gamepads")
     .trim()
     .isInt({ min: 0, max: 50 })
-    .withMessage(`Age ${gamepadsErr}`),
+    .withMessage(`Gamepads ${gamepadsErr}`),
 ];
 
 async function getAllSystemGames(req, res) {
   const systemId = req.params.systemId;
+  const system = await db.getSystem(systemId);
   const games = await db.getAllSystemGames(systemId);
   if (!games) {
     throw new CustomNotFoundError("System has no games");
   }
-  res.render("system-games", { games, systemId });
+  res.render("system-games", { system: system[0], games, systemId });
 }
 
 async function newGameGet(req, res) {
@@ -41,17 +45,23 @@ async function newGameGet(req, res) {
 }
 
 const newGamePost = [
-  validateMessage,
+  validateMessageNewGame,
   async (req, res) => {
     const errors = validationResult(req);
+    const systemId = req.params.systemId;
+    const system = await db.getSystem(systemId);
+    const developers = await db.getDevelopers();
     if (!errors.isEmpty()) {
-      return res.status(400).render("forms/new-game-form", {
+      return res.status(400).render("forms/create-game-form", {
         title: "Add New Game",
+        systemId,
+        developers,
+        system: system[0],
         errors: errors.array(),
       });
     }
-    const systemId = req.params.systemId;
     const { title, year, developerId } = matchedData(req);
+    console.log({ title, year, developerId });
     await db.insertGame({ title, year, systemId, developerId });
     res.redirect("/");
   },
@@ -60,7 +70,6 @@ const newGamePost = [
 async function updateSystemGet(req, res) {
   const systemId = req.params.systemId;
   const system = await db.getSystem(systemId);
-  console.log(system);
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
@@ -68,17 +77,20 @@ async function updateSystemGet(req, res) {
 }
 
 const updateSystemPost = [
-  validateMessage,
+  validateMessageUpdateSystem,
   async (req, res) => {
     const errors = validationResult(req);
+    const systemId = req.params.systemId;
+    const system = await db.getSystem(systemId);
     if (!errors.isEmpty()) {
+      console.log(errors);
       return res.status(400).render("forms/update-system-form", {
+        system: system[0],
         errors: errors.array(),
       });
     }
-    const systemId = req.params.systemId;
+    console.log("Hi");
     const { gamepads } = matchedData(req);
-
     await db.updateSystem({ gamepads, systemId });
     res.redirect("/");
   },

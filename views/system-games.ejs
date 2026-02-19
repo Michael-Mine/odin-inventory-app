@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= games[0].system %> Games</title>
+    <title><%= system.name %> Games</title>
   </head>
   <body>
-    <h1><%= games[0].system %> Games</h1>
+    <h1><%= system.name %> Games</h1>
     <a href="/system/<%= systemId %>/new-game">Add New Game</a>
     <ol>
       <% games.forEach((game) => { %>
@@ -20,7 +20,7 @@
         <br>
       <% }); %>
     </ol>
-    <a href="/system/<%= systemId %>/update">Update <%= games[0].system %> System</a>
-    <a href="/system/<%= systemId %>/delete">Delete <%= games[0].system %> System</a>
+    <a href="/system/<%= systemId %>/update">Update <%= system.name %></a>
+    <a href="/system/<%= systemId %>/delete">Delete <%= system.name %></a>
   </body>
 </html>
