@@ -20,10 +20,6 @@ const validateMessageNewDeveloper = [
     .trim()
     .isLength({ min: 1, max: 20 })
     .withMessage(`Name ${nameErr}`),
-  body("gamepads")
-    .trim()
-    .isInt({ min: 0, max: 50 })
-    .withMessage(`Age ${gamepadsErr}`),
 ];
 
 async function getAllSystems(req, res) {
@@ -66,7 +62,7 @@ const newDeveloperPost = [
       });
     }
     const { name } = matchedData(req);
-    await db.insertDeveloper({ name });
+    await db.insertDeveloper(name);
     res.redirect("/");
   },
 ];
