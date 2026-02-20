@@ -102,13 +102,23 @@ async function deleteSystemGet(req, res) {
   if (!system) {
     throw new CustomNotFoundError("System not found");
   }
-  res.render("forms/delete-system", { system: system[0] });
+  res.render("forms/delete-system", { system: system[0], error: "" });
 }
 
 async function deleteSystemPost(req, res) {
   const systemId = req.params.systemId;
-  await db.deleteSystem(systemId);
-  res.redirect("/");
+  const passwordInput = req.body.password;
+
+  if (passwordInput === process.env.DELETE_PASS) {
+    await db.deleteSystem(systemId);
+    res.redirect("/");
+  } else {
+    const system = await db.getSystem(systemId);
+    res.status(400).render("forms/delete-system", {
+      system: system[0],
+      error: "Incorrect Password",
+    });
+  }
 }
 
 module.exports = {

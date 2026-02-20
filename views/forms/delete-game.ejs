@@ -11,8 +11,12 @@
 
     <form method="POST" action="/game/<%= game.id %>/delete">
       <div>
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" />
+        <br />
         <button type="submit">Delete</button>
       </div>
     </form>
+    <p><%= error %></p>
   </body>
 </html>

@@ -33,13 +33,23 @@ async function deleteGameGet(req, res) {
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
-  res.render("forms/delete-game", { game: game[0] });
+  res.render("forms/delete-game", { game: game[0], error: "" });
 }
 
 async function deleteGamePost(req, res) {
   const gameId = req.params.gameId;
-  await db.deleteGame(gameId);
-  res.redirect("/");
+  const passwordInput = req.body.password;
+
+  if (passwordInput === process.env.DELETE_PASS) {
+    await db.deleteGame(gameId);
+    res.redirect("/");
+  } else {
+    const game = await db.getGame(gameId);
+    res.status(400).render("forms/delete-game", {
+      game: game[0],
+      error: "Incorrect Password",
+    });
+  }
 }
 
 module.exports = {
