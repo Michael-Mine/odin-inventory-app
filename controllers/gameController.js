@@ -12,10 +12,8 @@ async function getGame(req, res) {
 }
 
 async function updateGameGet(req, res) {
-  console.log("hi");
   const gameId = req.params.gameId;
   const game = await db.getGame(gameId);
-  console.log(game);
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
@@ -25,15 +23,16 @@ async function updateGameGet(req, res) {
 
 async function updateGamePost(req, res) {
   const gameId = req.params.gameId;
-  const { systemId } = matchedData(req);
-
+  const systemId = req.body.systemId;
+  console.log(systemId);
   await db.updateGame({ systemId, gameId });
-  res.redirect("/" + gameId);
+  res.redirect("/game/" + gameId);
 }
 
 async function deleteGameGet(req, res) {
   const gameId = req.params.gameId;
   const game = await db.getGame(gameId);
+  console.log(game);
   if (!game) {
     throw new CustomNotFoundError("Game not found");
   }
