@@ -12,11 +12,14 @@
     <p>Developer: <%= game.developer %></p>
 
     <% if(game.retiredon){ %> 
-      <p>Deleted on: <%= game.retiredOn %></p> 
+      <p>Deleted on: <%= game.retiredon %></p> 
     <% } %>
     
-    <a href="/game/<%= game.id %>/update">Update Game System</a>
-    <br>
-    <a href="/game/<%= game.id %>/delete">Delete Game</a>
+    <% if(!game.retiredon){ %> 
+      <a href="/game/<%= game.id %>/update">Update Game System</a>
+      <br>
+      <a href="/game/<%= game.id %>/delete">Delete Game</a>
+    <% } %>
+
   </body>
 </html>
