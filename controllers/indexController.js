@@ -24,7 +24,10 @@ const validateMessageNewDeveloper = [
 
 async function getAllSystems(req, res) {
   const systems = await db.getAllSystems();
-  res.render("index", { title: "Mr Mine's Arcade Bar Inventory App", systems });
+  res.render("index", {
+    title: "Mr Mine's Arcade Bar - Inventory App",
+    systems,
+  });
 }
 
 async function newSystemGet(req, res) {
