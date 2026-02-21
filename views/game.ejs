@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= game.title %></title>
-  </head>
+  <%- include("./partials/head.ejs") %>
   <body>
+    <%- include("./partials/nav.ejs") %>
+
     <h1><%= game.title %></h1>
-    <p>Year: <%= game.year %></p>
-    <p>System: <%= game.system %></p>
-    <p>Developer: <%= game.developer %></p>
+    <p>Made in <%= game.year %> by <%= game.developer %> on <%= game.system %></p>
 
     <% if(game.retiredon){ %> 
       <p>Deleted on: <%= game.retiredon %></p> 

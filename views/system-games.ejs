@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= system.name %></title>
-  </head>
+  <%- include("./partials/head.ejs") %>
   <body>
+    <%- include("./partials/nav.ejs") %>
+
     <h1><%= system.name %></h1>
     <p><%= system.name %> gamepads: <%= system.gamepads %></p>
     <a href="/system/<%= systemId %>/update">Update <%= system.name %> gamepads</a>
 
-    <a href="/system/<%= systemId %>/new-game">Add New Game</a>
-    <ol>
+    <ul>
       <% games.forEach((game) => { %>
         <li>
-          <p><%= game.title %></p>
-          <p><%= game.year %></p>
-          <p><%= game.system %></p>
-          <p><%= game.developer %></p>
-          <a href="/game/<%= game.id %>">Open to Edit</a>
+          <a href="/game/<%= game.id %>"><%= game.title %></a>
+          <p>Made in <%= game.year %> by <%= game.developer %></p>
         </li>
-        <br>
       <% }); %>
-    </ol>
+    </ul>
+    <a href="/system/<%= systemId %>/new-game">Add New Game</a>
     <a href="/system/<%= systemId %>/delete">Delete <%= system.name %></a>
   </body>
 </html>
