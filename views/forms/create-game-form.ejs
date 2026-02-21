@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include("../partials/head.ejs") %>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <link rel="stylesheet" href="/input.css" />
+    <link rel="stylesheet" href="/radio.css" />
+    <link rel="stylesheet" href="/button.css" />
   </head>
   <body>
+    <%- include("../partials/nav.ejs") %>
+
     <h1><%= title %></h1>
     <%- include("../partials/errors.ejs") %>
+
     <form method="POST" action="/system/<%= systemId %>/new-game">
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="title" />
-      <br />
-      <label for="year">Year made (between 1972 & 2026):</label>
-      <input type="number" name="year" id="year" min="1972" max="2026" />
-      <br />
+      <!-- <label for="title">Title:</label>
+      <input type="text" name="title" id="title" size="30"/>
+      <br /> -->
+      <p class="input-container">
+        <label class="input-label" for="title">Title:</label>
+        <input class="input-field" type="text" name="title" id="title" size="30"/>
+      </p>
+
+      <p class="input-container">
+        <label class="input-label" for="year">Year made:</label>
+        <input class="input-field" type="number" name="year" id="year" min="1972" max="2026" />
+      </p>
+      <p>(Must be between 1972 and 2026)</p>
+
       <fieldset>
         <legend>Please select a developer:</legend>
-        <div>
+        <div class="radio-group">
           <% developers.forEach((developer) => { %>
-            <input type="radio" id="<%= developer.name %>" name="developerId" value="<%= developer.id %>" />
-            <label for="<%= developer.name %>"><%= developer.name %></label>
+            <input type="radio" class="radio-input" 
+            id="<%= developer.name %>" name="developerId" value="<%= developer.id %>" />
+            <label for="<%= developer.name %>" class="radio-label">
+              <span class="radio-inner-circle"></span>
+              <%= developer.name %>
+            </label>
           <% }); %>
         </div>
       </fieldset>
       <button type="submit">Submit</button>
     </form>
 
-    <p>If developer is not shown, please add a new developer here:</p>
-    <a href="/new-developer">Add new developer</a>
+    <p class="new-dev">If developer is not shown, please add a new developer here:</p>
+    <a href="/new-developer" >Add new developer</a>
   </body>
 </html>
