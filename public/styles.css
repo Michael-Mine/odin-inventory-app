@@ -69,8 +69,55 @@ h6 {
 #__next {
   isolation: isolate;
 }
+/* My CSS declaration Order
+    Positioning
+    Display
+    Colour
+    Text
+    Other */
 
-/* My code */
+/* montserrat-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/montserrat-v29-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* montserrat-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/montserrat-v29-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* lato-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/lato-v24-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lato-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Lato";
+  font-style: italic;
+  font-weight: 400;
+  src: url("./fonts/lato-v24-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lato-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/montserrat-v29-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -80,6 +127,13 @@ nav {
 
 a {
   font-size: 1.8em;
+  padding: 10px;
+}
+
+a:hover,
+a:focus {
+  color: #59bcc8;
+  background-color: #783192;
 }
 
 .my-logo {
@@ -102,6 +156,31 @@ a {
     brightness(108%) contrast(88%);
 }
 
-/* body {
+body {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #e5e5e5;
   text-align: center;
-} */
+  font-family: "Lato", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin-top: 1.5rem;
+  font-size: 3em;
+  line-height: 1.1;
+  font-family: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+ul {
+  padding: 20px;
+}
+
+li {
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+  background-color: lightgray;
+  list-style: none;
+}
