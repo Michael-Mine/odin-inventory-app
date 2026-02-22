@@ -4,7 +4,6 @@ async function getAllSystems() {
   const { rows } = await pool.query(
     "SELECT * FROM systems WHERE retiredOn IS NULL",
   );
-  console.log(rows);
   return rows;
 }
 
