@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("./partials/head.ejs") %>
-  <head>
-    <link rel="stylesheet" href="/radio.css" />
-  </head>
+  
   <body>
     <%- include("./partials/nav.ejs") %>
 
     <h1><%= game.title %></h1>
-    <p>Made in <%= game.year %> by <%= game.developer %> on <%= game.system %></p>
+    <p class="new-dev">Made in <%= game.year %> by <%= game.developer %> on <%= game.system %></p>
 
     <% if(game.retiredon){ %> 
       <p>Deleted on: <%= game.retiredon %></p> 
     <% } %>
     
     <% if(!game.retiredon){ %> 
-      <a href="/game/<%= game.id %>/update">Update Game System</a>
-      <br>
+      <a href="/game/<%= game.id %>/update">Update Game</a>
       <a href="/game/<%= game.id %>/delete">Delete Game</a>
     <% } %>
 

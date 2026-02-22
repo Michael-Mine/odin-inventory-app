@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("../partials/head.ejs") %>
+  <head>
+    <link rel="stylesheet" href="/input.css" />
+    <link rel="stylesheet" href="/button.css" />
+  </head>
   <body>
     <%- include("../partials/nav.ejs") %>
 
     <h1><%= title %></h1>
     <%- include("../partials/errors.ejs") %>
     <form method="POST" action="/new-system">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" />
-      <br />
-      <label for="gamepads">gamepads (max 50):</label>
-      <input type="number" name="gamepads" id="gamepads" min="0" max="50" />
-      <br />
+      <p class="input-container">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+      </p>
+      <p class="input-container">
+        <label for="gamepads">Gamepads (max 50):</label>
+        <input type="number" name="gamepads" id="gamepads" min="0" max="50" />
+      </p>
       <button type="submit">Submit</button>
     </form>
   </body>
