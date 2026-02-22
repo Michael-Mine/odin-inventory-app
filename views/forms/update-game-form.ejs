@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include("../partials/head.ejs") %>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update <%= game.title %></title>
+    <link rel="stylesheet" href="/radio.css" />
+    <link rel="stylesheet" href="/button.css" />
   </head>
   <body>
+    <%- include("../partials/nav.ejs") %>
+
     <h1>Update <%= game.title %></h1>
-    <p>Current System: <%= game.system %></p>
+    <p>Current system is <%= game.system %></p>
 
     <form method="POST" action="/game/<%= game.id %>/update">
       <fieldset>
         <legend>Please select new system:</legend>
-        <div>
+        <div class="radio-group">
           <% systems.forEach((system) => { %>
-            <input type="radio" id="<%= system.name %>" name="systemId" value="<%= system.id %>" />
-            <label for="<%= system.name %>"><%= system.name %></label>
+            <input class="radio-input" type="radio" 
+            id="<%= system.name %>" name="systemId" value="<%= system.id %>" />
+            <label class="radio-label" for="<%= system.name %>">
+              <span class="radio-inner-circle"></span>
+              <%= system.name %>
+            </label>
           <% }); %>
         </div>
         <div>

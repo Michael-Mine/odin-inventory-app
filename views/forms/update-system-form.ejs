@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include("../partials/head.ejs") %>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update <%= system.name %></title>
+    <link rel="stylesheet" href="/input.css" />
+    <link rel="stylesheet" href="/button.css" />
   </head>
   <body>
+    <%- include("../partials/nav.ejs") %>
     <h1>Update <%= system.name %></h1>
-    <p>Current <%= system.name %> Gamepads: <%= system.gamepads %></p>
+    <p><%= system.name %> has <%= system.gamepads %> gamepads</p>
 
     <%- include("../partials/errors.ejs") %>
     <form method="POST" action="/system/<%= system.id %>/update">
-      <label for="gamepads">Update gamepads (max 50):</label>
-      <input type="number" name="gamepads" id="gamepads" min="0" max="50" />
-      <br />
+      <p class="input-container"></p>
+        <label for="gamepads">Update gamepads (max 50):</label>
+        <input type="number" name="gamepads" id="gamepads" min="0" max="50" />
+      </p>
       <button type="submit">Submit</button>
     </form>
   </body>
