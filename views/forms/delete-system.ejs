@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include("../partials/head.ejs") %>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delete <%= system.name %></title>
+    <link rel="stylesheet" href="/input.css" />
+    <link rel="stylesheet" href="/button.css" />
   </head>
   <body>
+    <%- include("../partials/nav.ejs") %>
     <h1>Delete <%= system.name %></h1>
     <p>Are you sure you want to delete <%= system.name %>?</p>
 
     <form method="POST" action="/system/<%= system.id %>/delete">
-      <div>
+      <p class="input-container">
         <label for="password">Password:</label>
         <input type="text" name="password" id="password" />
-        <br />
-        <button type="submit">Delete</button>
-      </div>
+      </p>
+      <button type="submit">Delete</button>
     </form>
     <p><%= error %></p>
   </body>
