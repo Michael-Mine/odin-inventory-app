@@ -13,7 +13,7 @@ By building from scratch, this will help solidify my recent learning of back-end
 
 The app and database is hosted on railway.
 
-Live Link: https://mrmine-inventoty-app.up.railway.app/
+Live Link: https://mrmine-inventory-app.up.railway.app/
 
 Although this project was for intended an inventory management app for an imaginary shop, such as for groceries or car parts, I decided to create the app for an arcade bar!
 
